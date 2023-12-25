@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload and Compilation</title>
+    <style>
+        body {
+            font-family: "lato", sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>View fCsv</h2>
+        <form id="fileUploadForm" method="post" action="/csvresult" enctype="multipart/form-data">
+            <input type="file" name="source_code" accept=".fcsv" required><br>
+            <input type="submit" value="Proceed">
+        </form>
+        <h2>View Database</h2>
+        <form id="fileUploadForm" method="post" action="/result" enctype="multipart/form-data">
+            <input type="file" name="source_code" accept=".db,.sqlite3" required><br>
+            <input type="submit" value="Proceed">
+        </form>
+
+        <div class="result" id="result">
+            <!-- Result will be displayed here -->
+        </div>
+    </div>
+</body>
+</html>

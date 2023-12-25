@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <title></title>
+</head>
+
+<body>
+
+    <div class="main-content">
+        <div class="title">
+            <%= file.name %> - InCess csv
+        </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                    aria-selected="true">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                    aria-controls="profile" aria-selected="false">Format</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                    aria-controls="contact" aria-selected="false">Formulas</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="icon-bar row">
+                    <div class="col-2">
+                        <button><i class="fa fa-paste h3"></i> Paste</button>
+                        <button><i class="fa fa-copy h3"></i> Copy</button>
+                        <button><i class="fa fa-cut h3"></i> Cut</button>
+                        <button><i class="fa fa- h3"></i> </button>
+                        <button><i class="fa fa- h3"></i> </button>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-3"></div>
+                    <div class="col-4"></div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="icon-bar row">
+                    <div class="col-12">
+                        <div>
+                            <input type="color" onchange="jcssparse(this)" data-action="background">
+                            <input type="color" onchange="jcssparse(this)" data-action="color">
+                            <input type="color" onchange="jcssparse(this)" data-action="borderColor">
+                            <select multiple id="test" onchange="jcssparse(this)" data-action="border">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <!-- Example split danger button -->
+<div class="btn-group">
+    <button type="button" onclick='rule(`{"border":"${$ID("borderSize").value}px solid ${$ID("borderColor").value}"}`)' class="btn btn-danger">All Borders</button>
+    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only"></span>
+    </button>
+    <div class="dropdown-menu">
+        <button class="dropdown-item" onclick='rule(`{"borderLeft":"${$ID("borderSize").value}px solid ${$ID("borderColor").value}"}`)' type="button">Left</button>
+        <button class="dropdown-item" onclick='rule(`{"borderRight":"${$ID("borderSize").value}px solid ${$ID("borderColor").value}"}`)' type="button">Right</button>
+        <button class="dropdown-item" onclick='rule(`{"borderTop":"${$ID("borderSize").value}px solid ${$ID("borderColor").value}"}`)' type="button">Top</button>
+        <button class="dropdown-item" onclick='rule(`{"borderBottom":"${$ID("borderSize").value}px solid ${$ID("borderColor").value}"}`)' type="button">Bottom</button>
+        <button class="dropdown-item" onclick='rule(`{"border":"none"}`)' type="button">None</button>
+        <input type="color" id="borderColor">
+        <input type="range" max="5" min="1" id="borderSize">
+    </div>
+   </div>
+                            <input type="range" max="900" min="300" step="300" onchange="jcssparse(this)"
+                                data-action="fontWeight">
+                            <input type="number" onchange="jcssparse(this,'`${value}px`')" data-action="fontSize">
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-2"></div>
+                    <div class="col-1"></div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+        </div>
+        <!-- Tab content -->
+
+        <div id="file" class="tabcontent">
+            <div>
+                <div class="col-1">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger">Save</button>
+                        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="cell-content">
+        <div id="addrBar">**</div>
+        <div>fx</div>
+    </div>
+
+
+    <div class="cells">
+        <div class="grid-container" id="cells">
+            <div class="cells__spacer" data-row="*" data-col="*"></div>
+            <% for (let i=1; i < len(table); i++) { %>
+                <div class="cells__alphabet" data-row="*" data-col="<%= looper(i) %>">
+                    <%= looper(i) %>
+                </div>
+                <% } %>
+                    <% for (let i=0; i < len(table); i++) { %>
+                        <div class="cells__number" data-col="*" data-row="<%= i + 1 %>">
+                            <%= i + 1 %>
+                        </div>
+                        <% for (let j=0; j < len(table[i]); j++) { %>
+                            <div class="cells__input" contenteditable="true" data-col="<%= looper(j + 1) %>"
+                                data-row="<%= i + 1 %>">
+                                <%= table[i][j] %>
+                            </div>
+                            <% } %>
+                                <% } %>
+        </div>
+    </div>
+    </div>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background: #fff;
+            font-family: "Noto Sans", sans-serif;
+            color: #444;
+            font-size: 14px;
+        }
+
+
+        .main-content {
+            display: grid;
+            min-height: 20vh;
+            grid-template-rows: repeat(2, 45px) 115px 60px auto;
+            max-width: 100%;
+        }
+
+        .main-content>div {
+            max-width: 100%;
+        }
+
+        .title {
+            background: #3A98B9;
+            text-align: center;
+            display: grid;
+            place-content: center;
+            color: #fff;
+        }
+
+        .cell-content {
+            border: 1px solid #78C1F3;
+            background: #78C1F3;
+            padding: 10px;
+            display: flex;
+            grid-template-columns: 50px auto;
+        }
+
+        .cell-content div {
+            border: 1px solid #9BE8D8;
+            background: #fff;
+            align-items: center;
+            width: 50px;
+        }
+
+        .cell-content div:nth-child(2) {
+            justify-content: center;
+            color: #999;
+            width: calc(100% - 50px) !important;
+            font: italic 700 18px "Merriweather", serif;
+            border-right: none;
+        }
+
+        .cells {
+            position: relative;
+            background: #9BE8D8;
+            overflow: hidden;
+        }
+
+        .cells__spacer {
+            background: #78C1F3;
+            position: relative;
+        }
+
+        .cells__spacer:after {
+            content: "";
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+            height: 80%;
+            width: 100%;
+            background: linear-gradient(135deg, transparent 30px, #bbb 30px, #bbb 55px, transparent 55px);
+        }
+
+        .cells__alphabet {
+            background: #78C1F3;
+        }
+
+        .cells__number {
+            background: #78C1F3;
+            grid-column: 1/span 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cells__input {
+            border: none;
+            padding: 0 6px;
+        }
+
+        .cells input,
+        .cells button {
+            border: none;
+            background: #fff;
+            padding: 0 6px;
+            font-family: "Noto Sans", sans-serif;
+        }
+
+
+        .icon-bar {
+            padding: 10px 15px;
+        }
+
+        .icon-bar.row>* {
+            box-shadow: -1px 1px 3px black;
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            /* 9 columns */
+            grid-gap: 10px;
+            /* Adjust the gap between tabs */
+            padding: .5rem;
+
+            height: 100%;
+        }
+
+        .icon-bar.row {
+            gap: 5px;
+            height: 15vh;
+            width: 100%;
+        }
+
+
+        .tabcontent {
+            display: none;
+        }
+
+        .cells__input,
+        .cells__alphabet {
+            resize: both !important;
+            width: 70px !important;
+        }
+    </style>
+    <style>
+        .cells {
+            position: relative;
+            background: #9BE8D8;
+            overflow: hidden;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(<%=len(table) %>, 70px);
+            grid-template-rows: repeat(<%=len(table[0]) + 1 %>, 30px);
+
+        }
+
+        .cells__spacer {
+            background: #78C1F3;
+            position: relative;
+        }
+
+        .tabcontent {
+            height: 15vh !important;
+        }
+
+        .cells__spacer:after {
+            content: "";
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+            height: 80%;
+            width: 100%;
+            background: linear-gradient(135deg, transparent 30px, #bbb 30px, #bbb 55px, transparent 55px);
+        }
+
+        .cells__alphabet,
+        .cells__number,
+        .cells__input {
+            border: 1px solid #9BE8D8;
+            background: #fff;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .cells__alphabet,
+        .cells__number {
+            font-weight: bold;
+        }
+
+        .cells__alphabet {
+            background: #78C1F3;
+        }
+
+        .cells__number {
+            grid-column: 1/span 1;
+        }
+
+        .cells__input {
+            grid-row: span 1;
+            grid-column: span 1;
+            padding: 0 6px;
+        }
+
+        .cells input,
+        .cells button {
+            border: none;
+            background: #fff;
+            padding: 0 6px;
+            font-family: "Noto Sans", sans-serif;
+        }
+    </style>
+    <script>
+
+
+
+
+        function openCity(evt, cityName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+    </script>
+
+    <script src="parser.js"></script>
+    <script>
+        const content = `<%= content %>`;
+        let rulesFile = "";
+        mainParser(content)
+    </script>
+    <script>
+        Array.from(document.getElementById("cells").getElementsByTagName("div")).forEach(e => {
+            e.addEventListener("click", () => {
+                document.getElementById("addrBar").innerText = `${e.getAttribute("data-col")}${e.getAttribute("data-row")}`
+            })
+        })
+    </script>
+    <script src="/js/jquery-3.6.1.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

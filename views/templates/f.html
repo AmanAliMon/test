@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLite DataBase Viewer</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <h1>Here's a view of your {{name | replace("static\\" ,"")}}</h1>
+        <hr>
+        {% for table in tab %}
+        <table class="table table-sm table-bordered">
+            <h1 align="center">{{table [0]}}</h1>
+            <hr>
+            <thead>
+                <tr>
+                {% for pebble in table[1] %}    
+                <th>{{pebble}}</th>
+                {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for rock in table[2] %}
+                <tr>
+                    {% for chunk in rock %}
+                    <td>{{chunk}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        {% endfor %}
+    </div>
+
+</body>
+<style>
+    h1{
+        color: crimson;
+    }
+    thead th{
+        font-weight: bold;
+        color: var(--bs-purple) !important;
+    }
+    tbody td{
+        font-weight: bold;
+        color: var(--bs-blue) !important;
+    }
+    table , table *{
+        border-color: springgreen;
+        border-width: 2px;
+    }
+    body{
+        background-color: #151515;
+    }
+</style>
+</html>
