@@ -2,12 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "app.js",
-      "use": "@now/node-server"
+      "src": "index.js",
+      "use": "@now/node-server",
+      "config": {
+        "NODE_OPTIONS": "--openssl-legacy-provider"
+      }
     }
   ],
   "routes": [
-    { "src": "/static/(.*)", "dest": "/static/$1" },
-    { "src": "/(.*)", "dest": "app.js" }
+    { "src": "/(.*)", "dest": "index.js" }
   ]
 }
